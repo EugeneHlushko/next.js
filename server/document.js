@@ -196,6 +196,8 @@ export class NextScript extends Component {
 }
 
 function getPagePathname (pathname, nextExport) {
+  // pathname always prefixed by '/', see #2826 and #2833
+  if (pathname[0] !== '/') pathname = `/${pathname}`
   if (!nextExport) return pathname
   if (pathname === '/') return '/index.js'
   return `${pathname}/index.js`
